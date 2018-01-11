@@ -3,7 +3,10 @@
 
 cat <<EOF
 ---
-addons: []
+addons: [
+  "scheduler:standard",
+  "papertrail:choklad"
+]
 default_process_types:
   web: heroku-php-apache2
 EOF
