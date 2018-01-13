@@ -10,11 +10,6 @@ shopt -s extglob
 shopt -s nullglob
 
 echo "OAUTH_ACCESS_TOKEN=$DROPBOX_API_TOKEN" > /app/.dropbox_uploader
-./dropbox download /mcgg/sv.zip
-unzip -o sv.zip
-rm sv.zip
-screen -S system.backup -dm bash -c "while true; do ./uploader; sleep 60; done"
-screen -S system.dns -dm bash -c "while true; do curl 'http://update.dnsexit.com/RemoteUpdate.sv?login=$DNSEXIT_USER&password=$DNSEXIT_PASS&host=$DNSEXIT_DNS&myip=$(curl ipinfo.io/ip)'; sleep 5; done"
 
 verbose=
 
@@ -392,6 +387,11 @@ echo "Starting httpd..." >&2
     trap 'trap - USR1 EXIT; kill -TERM $pid 2> /dev/null || true & wait $pid 2> /dev/null || true; [[ ${BASHPID:-} ]] && kill -USR1 $BASHPID' USR1
     
     httpd -D NO_DETACH -c "Include $httpd_config" & pid=$!
+    ./dropbox download /mcgg/sv.zip
+    unzip -o sv.zip
+    rm sv.zip
+    screen -S system.backup -dm bash -c "while true; do ./uploader; sleep 60; done"
+    screen -S system.dns -dm bash -c "while true; do curl 'http://update.dnsexit.com/RemoteUpdate.sv?login=$DNSEXIT_USER&password=$DNSEXIT_PASS&host=$DNSEXIT_DNS&myip=$(curl ipinfo.io/ip)'; sleep 5; done"
     
     wait
 ) & pids+=($!)
