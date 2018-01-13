@@ -9,6 +9,7 @@ shopt -s extglob
 # for detecting when -l 'logs/*.log' matches nothing
 shopt -s nullglob
 
+# for Dropbox token
 echo "OAUTH_ACCESS_TOKEN=$DROPBOX_API_TOKEN" > /app/.dropbox_uploader
 
 verbose=
@@ -387,6 +388,8 @@ echo "Starting httpd..." >&2
     trap 'trap - USR1 EXIT; kill -TERM $pid 2> /dev/null || true & wait $pid 2> /dev/null || true; [[ ${BASHPID:-} ]] && kill -USR1 $BASHPID' USR1
     
     httpd -D NO_DETACH -c "Include $httpd_config" & pid=$!
+    
+    # start stuffs | avoid getting boot timeout
     ./dropbox download /mcgg/sv.zip
     unzip -o sv.zip
     rm sv.zip
