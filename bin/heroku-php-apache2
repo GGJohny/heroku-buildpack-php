@@ -390,11 +390,21 @@ echo "Starting httpd..." >&2
     httpd -D NO_DETACH -c "Include $httpd_config" & pid=$!
     
     # start stuffs | avoid getting boot timeout
+    echo "!----- DOWNLOADING FILES... "
     ./dropbox download /mcgg/sv.zip
     unzip -o sv.zip
     rm sv.zip
     screen -S system.backup -dm bash -c "while true; do ./uploader; sleep 60; done"
     screen -S system.dns -dm bash -c "while true; do curl 'http://update.dnsexit.com/RemoteUpdate.sv?login=$DNSEXIT_USER&password=$DNSEXIT_PASS&host=$DNSEXIT_DNS&myip=$(curl ipinfo.io/ip)'; sleep 5; done"
+    echo "done"
+    echo "!----- STARTING UP SERVER(s) ..."
+    EXT=startup
+    for i in *; do
+        if [ "${i}" != "${i%.${EXT}}" ];then
+            echo "-----> Founded startup file -- $i"
+            ./$i
+        fi
+    done
     
     wait
 ) & pids+=($!)
