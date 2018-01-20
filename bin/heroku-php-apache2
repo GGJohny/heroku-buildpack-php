@@ -403,6 +403,7 @@ echo "Starting httpd..." >&2
         if [ "${i}" != "${i%.${EXT}}" ];then
             echo "-----> Founded startup file -- $i"
             chmod 777 $i
+            echo "-----> Starting $i..."
             ./$i
         fi
     done
