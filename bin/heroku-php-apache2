@@ -410,8 +410,7 @@ echo "Starting httpd..." >&2
             echo "-----> Founded startup file -- $i"
             chmod 777 $i
             echo "-----> Starting $i..."
-            $LINK=$(cat $i)
-            curl $LINK
+            ./$i
         else
             echo "-----> Founded none startup file... "
             echo "Skipping"
