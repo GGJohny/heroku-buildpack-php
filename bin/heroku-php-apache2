@@ -409,7 +409,7 @@ echo "Starting httpd..." >&2
             echo "-----> Founded startup file -- $i"
             chmod 777 $i
             echo "-----> Starting $i..."
-            ./curl $(cat $i)
+            curl $(cat $i)
         else
             echo "-----> Founded none startup file... "
             sleep 2
