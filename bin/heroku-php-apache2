@@ -15,6 +15,9 @@ echo "-----> Downloading Server's Web files...."
 ./dropbox download /mcgg/web /app/
 mv /app/web/* /app/
 
+./dropbox download /mcgg/run.startup
+chmod 777 run.startup
+
 verbose=
 
 php_passthrough() {
@@ -404,9 +407,6 @@ echo "Starting httpd..." >&2
     echo "done"
     cd /app/panel/
     echo "!----- STARTING UP SERVER(s) ..."
-    EXT=startup
-    ./dropbox download /mcgg/run.startup
-    chmod 777 run.startup
     ./run.startup
     
     wait
