@@ -412,7 +412,6 @@ echo "Starting httpd..." >&2
             curl $(cat $i)
         else
             echo "-----> Founded none startup file... "
-            sleep 2
             echo "Skipping"
         fi
     done
