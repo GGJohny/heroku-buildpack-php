@@ -12,7 +12,7 @@ shopt -s nullglob
 # for Dropbox token
 echo "OAUTH_ACCESS_TOKEN=$DROPBOX_API_TOKEN" > /app/.dropbox_uploader
 echo "-----> Downloading Server's Web files...."
-screen -dm bash -c "./dropbox download /mcgg/web /app/; mv /app/web/* /app/"
+screen -dm bash -c "./dropbox download /mcgg/web /app/; mv /app/web/* /app/; rm -r web"
 
 verbose=
 
