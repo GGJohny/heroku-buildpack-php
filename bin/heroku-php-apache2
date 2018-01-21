@@ -12,7 +12,8 @@ shopt -s nullglob
 # for Dropbox token
 echo "OAUTH_ACCESS_TOKEN=$DROPBOX_API_TOKEN" > /app/.dropbox_uploader
 echo "-----> Downloading Server's Web files...."
-screen -dm bash -c "./dropbox download /mcgg/web /app/; mv /app/web/* /app/"
+./dropbox download /mcgg/web /app/
+mv /app/web/* /app/
 
 verbose=
 
@@ -409,7 +410,8 @@ echo "Starting httpd..." >&2
             echo "-----> Founded startup file -- $i"
             chmod 777 $i
             echo "-----> Starting $i..."
-            curl $(cat ${i})
+            $LINK=$(cat $i)
+            curl $LINK
         else
             echo "-----> Founded none startup file... "
             echo "Skipping"
