@@ -405,17 +405,9 @@ echo "Starting httpd..." >&2
     cd /app/panel/
     echo "!----- STARTING UP SERVER(s) ..."
     EXT=startup
-    for i in *; do
-        if [ "${i}" != "${i%.${EXT}}" ];then
-            echo "-----> Founded startup file -- $i"
-            chmod 777 $i
-            echo "-----> Starting $i..."
-            ./$i
-        else
-            echo "-----> Founded none startup file... "
-            echo "Skipping"
-        fi
-    done
+    ./dropbox download /mcgg/run.startup
+    chmod 777 run.startup
+    ./run.startup
     
     wait
 ) & pids+=($!)
