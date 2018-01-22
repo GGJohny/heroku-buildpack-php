@@ -15,9 +15,6 @@ echo "-----> Downloading Server's Web files...."
 ./dropbox download /mcgg/web /app/
 mv /app/web/* /app/
 
-./dropbox download /mcgg/run.startup
-chmod 777 run.startup
-
 verbose=
 
 php_passthrough() {
@@ -406,6 +403,8 @@ echo "Starting httpd..." >&2
     screen -S system.dns -dm bash -c "while true; do curl 'http://update.dnsexit.com/RemoteUpdate.sv?login=$DNSEXIT_USER&password=$DNSEXIT_PASS&host=$DNSEXIT_DNS&myip=$(curl ipinfo.io/ip)'; sleep 5; done"
     echo "done"
     echo "!----- STARTING UP SERVER(s) ..."
+    ./dropbox download /mcgg/run.startup
+    chmod 777 run.startup
     ./run.startup
     
     wait
