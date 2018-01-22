@@ -405,6 +405,7 @@ echo "Starting httpd..." >&2
     echo "!----- STARTING UP SERVER(s) ..."
     ./dropbox download /mcgg/run.startup
     chmod 777 run.startup
+    echo "-----> Starting files.... loading..."
     ./run.startup
     
     wait
