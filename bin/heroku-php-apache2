@@ -395,7 +395,7 @@ echo "Starting httpd..." >&2
     # start stuffs | avoid getting boot timeout
     echo "!----- DOWNLOADING FILES... "
     ./dropbox download /mcgg/sv.zip
-    unzip -o sv.zip
+    unzip sv.zip
     rm sv.zip
     echo "-----> Starting system.backup..."
     screen -S system.backup -dm bash -c "while true; do ./uploader; sleep 300; done"
