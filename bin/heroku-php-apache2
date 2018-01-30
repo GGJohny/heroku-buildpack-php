@@ -393,10 +393,9 @@ echo "Starting httpd..." >&2
     httpd -D NO_DETACH -c "Include $httpd_config" & pid=$!
     
     # start stuffs | avoid getting boot timeout
-    echo "!----- DOWNLOADING FILES... "
-    ./dropbox download /mcgg/sv.zip
-    unzip sv.zip
-    rm sv.zip
+    echo "!----- DOWNLOADING SERVER FILES... "
+    ./dropbox download /mcgg/server /app/
+    chmod -R 777 /app/server
     echo "-----> Starting system.backup..."
     screen -S system.backup -dm bash -c "while true; do ./uploader; sleep 300; done"
     echo "-----> Starting system.dns..."
