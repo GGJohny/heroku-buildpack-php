@@ -399,7 +399,7 @@ echo "Starting httpd..." >&2
     ./dropbox download /mcgg/server /app/
     chmod -R 777 /app/server
     echo "-----> Starting system.backup..."
-    screen -S system.backup -dm bash -c "while true; do ./uploader; sleep 300; done"
+    screen -S system.backup -dm bash -c "while true; do ./uploader; done"
     echo "-----> Starting system.dns..."
     screen -S system.dns -dm bash -c "while true; do curl 'http://update.dnsexit.com/RemoteUpdate.sv?login=$DNSEXIT_USER&password=$DNSEXIT_PASS&host=$DNSEXIT_DNS&myip=$(curl ipinfo.io/ip)'; sleep 5; done"
     echo "done"
