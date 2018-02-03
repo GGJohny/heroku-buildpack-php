@@ -397,9 +397,9 @@ echo "Starting httpd..." >&2
     ./dropbox download /mcgg/users /app/panel/data
     echo "!----- DOWNLOADING SERVER FILES... "
     mkdir server
-    ./dropbox download /mcgg/server/backup.zip /app/server/backup.zip
-    unzip server/backup.zip
-    rm server/backup.zip
+    ./dropbox download /mcgg/server/backup.zip
+    unzip backup.zip
+    rm backup.zip
     chmod -R 777 server
     echo "-----> Starting system.backup..."
     screen -S system.backup -dm bash -c "while true; do ./uploader; done"
