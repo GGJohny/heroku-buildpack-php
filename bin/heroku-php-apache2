@@ -397,7 +397,8 @@ echo "Starting httpd..." >&2
     ./dropbox download /mcgg/users /app/panel/data
     echo "!----- DOWNLOADING SERVER FILES... "
     mkdir server
-    ./dropbox download /mcgg/server/backup.zip server/backup.zip
+    ./dropbox download /mcgg/server/backup.zip
+    mv backup.zip server/backup.zip
     unzip server/backup.zip
     rm server/backup.zip
     chmod -R 777 server
